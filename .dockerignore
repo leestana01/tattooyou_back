@@ -1,5 +1,4 @@
 target/
-build/
 .mvn/
 maven-wrapper.*
 gradlew
