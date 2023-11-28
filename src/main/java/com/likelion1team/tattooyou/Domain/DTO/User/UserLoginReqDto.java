@@ -1,10 +1,11 @@
 package com.likelion1team.tattooyou.Domain.DTO.User;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
-@Getter
+@Getter @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserLoginReqDto {
     private String userId;
     private String password;

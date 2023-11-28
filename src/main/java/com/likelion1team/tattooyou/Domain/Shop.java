@@ -6,6 +6,8 @@ import javax.persistence.*;
 @Data
 @Builder
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Shop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

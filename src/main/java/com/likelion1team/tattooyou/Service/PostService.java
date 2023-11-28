@@ -10,6 +10,8 @@ import com.likelion1team.tattooyou.Repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 @RequiredArgsConstructor
 public class PostService {
@@ -18,9 +20,10 @@ public class PostService {
     private final UserService userService;
     private final ImageService imageService;
     public PostResDto createPost(PostReqDto reqDto){
-        Image image = imageService.createImage(reqDto.getImage());
         User writer = userService.findEntityById(reqDto.getWriterId());
-        Post post = PostMapper.INSTANCE.postDtoToPost(reqDto, image, writer);
+        Image image = imageService.createImage(reqDto.getImage());
+        Date createdAt = new Date();
+        Post post = PostMapper.INSTANCE.postDtoToPost(reqDto, image, writer, createdAt);
         postRepository.save(post);
         return PostMapper.INSTANCE.postToPostResDto(post);
     }

@@ -7,6 +7,8 @@ import java.util.Date;
 @Data
 @Builder
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Post {
 
     @Id
@@ -19,11 +21,11 @@ public class Post {
     @OneToOne(fetch = FetchType.LAZY)
     private Image image;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private User writer;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt = new Date();
+    private Date createdAt;
 
 }
 

@@ -20,7 +20,7 @@ public class User {
     private String userId;
     private String password;
 
-    private String userName;
+    private String username;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Image> images;

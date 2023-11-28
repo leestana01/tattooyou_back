@@ -2,10 +2,11 @@ package com.likelion1team.tattooyou.Domain.DTO.Post;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 
-@Getter
+@Getter @Setter
 @Builder
 public class PostResDto {
     private String title;
