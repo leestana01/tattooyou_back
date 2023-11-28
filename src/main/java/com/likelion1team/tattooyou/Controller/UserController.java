@@ -1,9 +1,11 @@
 package com.likelion1team.tattooyou.Controller;
 
 import com.likelion1team.tattooyou.Domain.DTO.Post.PostReqDto;
+import com.likelion1team.tattooyou.Domain.DTO.Post.PostResDto;
 import com.likelion1team.tattooyou.Domain.DTO.User.ImageReqDto;
 import com.likelion1team.tattooyou.Domain.DTO.User.UserLoginReqDto;
 import com.likelion1team.tattooyou.Domain.DTO.User.UserLoginResDto;
+import com.likelion1team.tattooyou.Domain.DTO.User.UserRegisterReqDto;
 import com.likelion1team.tattooyou.Service.PostService;
 import com.likelion1team.tattooyou.Service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -21,19 +23,19 @@ public class UserController {
     private final PostService postService;
 
     @PostMapping
-    public ResponseEntity<UserLoginResDto> createUser(UserLoginReqDto reqDto){
+    public ResponseEntity<UserLoginResDto> createUser(@RequestBody UserRegisterReqDto reqDto){
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(userService.createUser(reqDto));
     }
 
     @PostMapping("/posts")
-    public ResponseEntity<?> createPostsByUser(PostReqDto reqDto){
+    public ResponseEntity<PostResDto> createPostsByUser(@ModelAttribute PostReqDto reqDto){
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(postService.createPost(reqDto));
     }
 
     @PostMapping("/images")
-    public ResponseEntity<String> addImageToUser(ImageReqDto reqDto){
+    public ResponseEntity<String> addImageToUser(@RequestBody ImageReqDto reqDto){
         userService.createImageByUser(reqDto);
         return new ResponseEntity<>("이미지 추가 완료", HttpStatus.CREATED);
     }

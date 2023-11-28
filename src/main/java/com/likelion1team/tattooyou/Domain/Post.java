@@ -5,18 +5,15 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
+@Builder
 @Entity
-@NoArgsConstructor
 public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String title;
-
-    @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
     @OneToOne(fetch = FetchType.LAZY)

@@ -3,6 +3,7 @@ package com.likelion1team.tattooyou.Service;
 import com.likelion1team.tattooyou.Domain.DTO.User.ImageReqDto;
 import com.likelion1team.tattooyou.Domain.DTO.User.UserLoginReqDto;
 import com.likelion1team.tattooyou.Domain.DTO.User.UserLoginResDto;
+import com.likelion1team.tattooyou.Domain.DTO.User.UserRegisterReqDto;
 import com.likelion1team.tattooyou.Domain.Image;
 import com.likelion1team.tattooyou.Domain.MapStruct.UserMapper;
 import com.likelion1team.tattooyou.Domain.Post;
@@ -22,8 +23,8 @@ public class UserService {
     private final UserRepository userRepository;
     private final ImageService imageService;
 
-    public UserLoginResDto createUser(UserLoginReqDto reqDto) {
-        User user = UserMapper.INSTANCE.userLoginDtoToUser(reqDto);
+    public UserLoginResDto createUser(UserRegisterReqDto reqDto) {
+        User user = UserMapper.INSTANCE.userRegisterReqDtoToUser(reqDto);
         userRepository.save(user);
         return UserMapper.INSTANCE.userToUserLoginDto(user);
     }

@@ -4,13 +4,12 @@ import lombok.*;
 import javax.persistence.*;
 
 @Data
+@Builder
 @Entity
-@NoArgsConstructor
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private byte[] image;
 }

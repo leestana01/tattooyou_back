@@ -6,17 +6,18 @@ import java.util.List;
 import java.util.Set;
 
 @Data
+@Builder
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String userId;
-    @Column(nullable = false)
     private String password;
 
     private String userName;
