@@ -1,12 +1,10 @@
 package com.likelion1team.tattooyou.Domain.DTO.Shop;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter @Setter
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 public class ShopDto {
     private String name;
