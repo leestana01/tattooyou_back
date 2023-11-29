@@ -10,6 +10,7 @@ import com.likelion1team.tattooyou.Domain.MapStruct.PostMapper;
 import com.likelion1team.tattooyou.Domain.MapStruct.UserMapper;
 import com.likelion1team.tattooyou.Domain.Post;
 import com.likelion1team.tattooyou.Domain.User;
+import com.likelion1team.tattooyou.Exception.BadRequestException;
 import com.likelion1team.tattooyou.Repository.PostRepository;
 import com.likelion1team.tattooyou.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -47,6 +48,17 @@ public class UserService {
     public UserLoginResDto findUserById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(id.toString()));
+        return UserMapper.INSTANCE.userToUserLoginDto(user);
+    }
+
+    public UserLoginResDto findUserByDto(UserLoginReqDto dto) {
+        User user = userRepository.findByUserId(dto.getUserId())
+                .orElseThrow(() -> new EntityNotFoundException(dto.getUserId()));
+
+        if (!user.getPassword().equals(dto.getPassword())){
+            throw new BadRequestException("비밀번호가 틀립니다");
+        }
+
         return UserMapper.INSTANCE.userToUserLoginDto(user);
     }
 
